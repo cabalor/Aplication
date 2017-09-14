@@ -29,6 +29,12 @@ public class LogedController {
 	
 	@RequestMapping("/loged")
 	public String home(HttpSession ses, Model m) throws IOException {	
+		Boolean neu = ses.isNew();
+		/*if(neu=false) {
+			return"redirect:/login";
+		}*/
+		
+		
 		User logggedUser = (User)ses.getAttribute("loged");
 		
 		

@@ -2,16 +2,27 @@ package pl.cbl.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+
+@Entity
+@Table(name="vote")
 public class Vote {
 
-	private int id;
-	private String type;
+	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date crt;
@@ -19,36 +30,38 @@ public class Vote {
 	private User user;
 	@ManyToOne
 	private Post post;
-	private VotingEnum voteType;
-	
-	
-	
-	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public Date getCrt() {
 		return crt;
 	}
-
 	public void setCrt(Date crt) {
 		this.crt = crt;
 	}
-
-	public Vote() {
+	public User getUser() {
+		return user;
 	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Post getPost() {
+		return post;
+	}
+	public void setPost(Post post) {
+		this.post = post;
+	}
+	@Override
+	public String toString() {
+		return "Vote [id=" + id + ", crt=" + crt +  "]";
+	}
+	
+	
+
+	
+
 
 }

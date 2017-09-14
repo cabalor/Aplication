@@ -30,13 +30,35 @@
   <div class="col-md-12">Witaj ${name}  </div>
 </div>
 
+<c:if test="${not empty postList}">
+<c:forEach var="item" items="${postList}">
+<div class="container">
+     <div class="row bs-callout bs-callout-primary">
+                <div class="col col-md-1 col-sm-2">
+                
+                </div>
+                <div class="col col-md-11 col-sm-10">
+                  <h3 class="centered"></h3>
+                  <h6><small>${item.title}<br> <button><a href="<%=request.getContextPath() %>/edit/${item.id}">edycja</a></button>   
+                  <button><a href="<%=request.getContextPath() %>/del/${item.id}">dilejtacja</a></button></br></small></h6>
+					
+                </div>
+              </div>
+              </div>
+</c:forEach>
+</c:if>
+
+
+
+
+
+<%--
 <p>
 <c:forEach items="${postList}" var="item">
     ${item.title}<br> <button><a href="<%=request.getContextPath() %>/edit/${item.id}">edycja</a></button>   <button><a href="<%=request.getContextPath() %>/del/${item.id}">dilejtacja</a></button></br>
 </c:forEach>
 </p>
-
-
+--%>
 
 
 </body>

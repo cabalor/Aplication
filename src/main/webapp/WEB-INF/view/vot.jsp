@@ -27,28 +27,9 @@
     </ul>
   </div>
 </nav>
-<p>witaj ${loged.login}</p>
+<p>juz glosowales</p>
 
-<c:if test="${not empty postList}">
-<c:forEach var="post" items="${postList}">
-<div class="container">
-     <div class="row bs-callout bs-callout-primary">
-                <div class="col col-md-1 col-sm-2">
-                
-                </div>
-                <div class="col col-md-11 col-sm-10">
-                <p><c:out value="${post.title}" /><br>
-                  <h3 class="centered"></h3>
-                  <h6><small>Dodane przez: <c:out value="${post.user.login}" />, 
-                  Dnia: <fmt:formatDate value="${post.created}" pattern="dd/MM/YYYY"/></small></h6>
-                  <p>${post.sum} </p>
-                  <button><a href="<%=request.getContextPath() %>/vote/yes/${post.id}">do gore</a></button>   
-                  <button><a href="<%=request.getContextPath() %>/vote/no/${post.id}">w dol</a></button></br>
-                </div>
-              </div>
-              </div>
-</c:forEach>
-</c:if>
+
 
 </body>
 </html>

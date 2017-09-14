@@ -19,7 +19,7 @@ public class PostDao {
 	
 	
 	public void addPost(Post post) {
-		em.merge(post);
+		em.persist(post);
 		
 		
 	}

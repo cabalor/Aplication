@@ -29,11 +29,11 @@
 <form:errors path="*"/>
   <div class="form-group">
     <form:label path="login">login</form:label>
-	<form:input path="login"/>
+	<form:input value="kraken" path="login"/>
   </div>
   <div class="form-group">
     <form:label path="password">password</form:label>
-	<form:input type="password" path="password"/>
+	<form:input value="kraken" type="password" path="password"/>
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form:form>

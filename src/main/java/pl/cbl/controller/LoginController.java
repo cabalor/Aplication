@@ -42,7 +42,7 @@ public class LoginController {
 			m.addAttribute("loged", user);
 		}
 
-		return "redirect:/loged";
+		return "redirect:/main";
 	}
 
 }
