@@ -1,21 +1,19 @@
 package pl.cbl.entity;
 
 import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
@@ -23,15 +21,22 @@ import org.mindrot.jbcrypt.BCrypt;
 public class User {
 
 	
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@Column(unique=true)
+	@NotEmpty
 	private String login;
+	@NotEmpty
+	@Length(min=6, max=80)
 	private String password;
+	@Email
 	private String email;
+	@NotEmpty
+	@Length(min=3, max=20)
 	private String firstName;
+	@NotEmpty
+	@Length(min=3, max=20)
 	private String lastName;
 	@OneToMany(mappedBy="user", orphanRemoval=true, fetch=FetchType.EAGER)
 	private List<Post> posts; 
@@ -46,110 +51,76 @@ public class User {
 	}
 
 
-
 	public Long getId() {
 		return id;
 	}
-
 
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-
 	public String getLogin() {
 		return login;
 	}
-
-
 
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
-
-
 	public String getPassword() {
 		return password;
 	}
 
-
-
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 	}
-
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
-
 
 	public String getLastName() {
 		return lastName;
 	}
 
-
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-
 
 	public List<Post> getPosts() {
 		return posts;
 	}
 
-
-
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
-
-
 
 	public List<Vote> getVotes() {
 		return votes;
 	}
 
-
-
 	public void setVotes(List<Vote> votes) {
 		this.votes = votes;
 	}
-
-
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", votes=" + votes + "]";
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -165,8 +136,6 @@ public class User {
 		result = prime * result + ((votes == null) ? 0 : votes.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -219,10 +188,4 @@ public class User {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	
 }

@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="post")
@@ -25,12 +26,12 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	@Column(length=300)
+	@NotEmpty
 	private String title;
-	private String msg;
 	@ManyToOne
 	private User user;
 	@Temporal(TemporalType.TIMESTAMP)
-	//@Column(name="crt")
 	@CreationTimestamp
 	private Date created;
 	@OneToMany(mappedBy="post", orphanRemoval=true, fetch=FetchType.EAGER)
@@ -49,12 +50,6 @@ public class Post {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public String getMsg() {
-		return msg;
-	}
-	public void setMsg(String msg) {
-		this.msg = msg;
 	}
 	public User getUser() {
 		return user;
@@ -82,7 +77,7 @@ public class Post {
 	}
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", title=" + title + ", msg=" + msg + ", created=" + created
+		return "Post [id=" + id + ", title=" + title + ", created=" + created
 				+ ", sum=" + sum + "]";
 	}
 	@Override
@@ -91,7 +86,6 @@ public class Post {
 		int result = 1;
 		result = prime * result + ((created == null) ? 0 : created.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((msg == null) ? 0 : msg.hashCode());
 		result = prime * result + sum;
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
@@ -114,11 +108,6 @@ public class Post {
 			return false;
 		if (id != other.id)
 			return false;
-		if (msg == null) {
-			if (other.msg != null)
-				return false;
-		} else if (!msg.equals(other.msg))
-			return false;
 		if (sum != other.sum)
 			return false;
 		if (title == null) {
@@ -138,6 +127,7 @@ public class Post {
 			return false;
 		return true;
 	}
+	
 	
 
 

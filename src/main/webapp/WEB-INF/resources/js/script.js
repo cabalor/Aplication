@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function(){
  
     
-    setTimeout(function(){
-   window.location.reload(1);
-}, 5000);
+    function yes(){
+        
+        
+        location.href = "<%=request.getContextPath() %>/edit/${item.id}";
+    }
     
     
     

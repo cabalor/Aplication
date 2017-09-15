@@ -16,16 +16,15 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="main">Strona</a>
+      <a class="navbar-brand" href="main">Main Site</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="logout">logout</a></li>
-      <li><a href="add">dodaj film</a></li>
+      <li><a href="add">dodaj wiadomosc</a></li>
+      <li><a href="userEdit">edytuj dane</a></li>
     </ul>
   </div>
 </nav>
-
-
 <div class="row">
   <div class="col-md-12">Witaj ${name}  </div>
 </div>
@@ -38,28 +37,16 @@
                 
                 </div>
                 <div class="col col-md-11 col-sm-10">
+                		${item.title}
                   <h3 class="centered"></h3>
-                  <h6><small>${item.title}<br> <button><a href="<%=request.getContextPath() %>/edit/${item.id}">edycja</a></button>   
-                  <button><a href="<%=request.getContextPath() %>/del/${item.id}">dilejtacja</a></button></br></small></h6>
+                  <h6><small><button type="button" class="btn btn-primary" onclick =" location.href = '<%=request.getContextPath() %>/edit/${item.id}';">edycja</a></button>   
+                  <button type="button" class="btn btn-danger" onclick=" location.href = '<%=request.getContextPath() %>/del/${item.id}';">dilejtacja</button></br></small></h6>
 					
                 </div>
               </div>
               </div>
 </c:forEach>
 </c:if>
-
-
-
-
-
-<%--
-<p>
-<c:forEach items="${postList}" var="item">
-    ${item.title}<br> <button><a href="<%=request.getContextPath() %>/edit/${item.id}">edycja</a></button>   <button><a href="<%=request.getContextPath() %>/del/${item.id}">dilejtacja</a></button></br>
-</c:forEach>
-</p>
---%>
-
-
 </body>
+<script type="text/javascript"></script>
 </html>

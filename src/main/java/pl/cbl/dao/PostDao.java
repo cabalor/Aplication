@@ -11,16 +11,11 @@ import pl.cbl.entity.Post;
 @Transactional
 public class PostDao {
 
-	
-	
-	
 	@PersistenceContext
 	EntityManager em;
 	
-	
 	public void addPost(Post post) {
 		em.persist(post);
-		
 		
 	}
 	
@@ -32,17 +27,13 @@ public class PostDao {
 	public void update(long id, Post post) {
 		Post postUp = em.find(Post.class, id);
 		postUp.setTitle(post.getTitle());
-		postUp.setMsg(post.getMsg());
 		em.merge(postUp);
 		
 	}
-	
 	
 	public void del(long id) {
 		Post post = em.find(Post.class, id);
 		em.remove(post);
 		
 	}
-	
-	
 }

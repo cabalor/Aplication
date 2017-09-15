@@ -29,7 +29,11 @@ public class RegisterController {
 	}
 
 	@PostMapping("/register")
-	public String registerPost(User user) {
+	public String registerPost(@Valid User user, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "register";
+		}
 		
 		dao.addUser(user);
 		return "redirect:/main";

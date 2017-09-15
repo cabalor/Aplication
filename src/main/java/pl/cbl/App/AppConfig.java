@@ -13,6 +13,7 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -51,41 +52,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		return tm;
 	}
 
-	/*@Override
-	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(getPublisherConverter());
-		registry.addConverter(getAuthorConvertert());
-		registry.addConverter(getBookConvertert());
-
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) { 
+		configurer.enable();
 	}
-
-	@Bean
-	public pl.cbl.converter.PublisherConverter getPublisherConverter() {
-
-		return new pl.cbl.converter.PublisherConverter();
-
-	}
-
-	@Bean
-	public AuthorConvertert getAuthorConvertert() {
-
-		return new AuthorConvertert();
-
-	}
-
-	@Bean
-	public BookConverter getBookConvertert() {
-
-		return new BookConverter();
-
-	}
-	
-	
-	@Bean
-	public Validator validator() {
-
-		return new LocalValidatorFactoryBean();
-
-	}*/
 
 }

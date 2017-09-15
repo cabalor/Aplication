@@ -7,7 +7,7 @@ import pl.cbl.entity.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 
 	
-	User findByLogin(String login);
+	User findUserByLogin(String login);
 	
 	
 	

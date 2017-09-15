@@ -3,7 +3,6 @@ package pl.cbl.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -30,16 +29,16 @@ public class LoginController {
 	@PostMapping("/login")
 	public String loginin(Login loginUser, Model m) {
 
-		User user = repoUser.findByLogin(loginUser.getLogin());
+		User user = repoUser.findUserByLogin(loginUser.getLogin());
 
 		if (user == null) {
-			Login login = new Login();
-			m.addAttribute("loginUser", login);
-			return "login";
+			return "redirect:/login";
 		}
 
 		if (user.isPasswordCorrect(loginUser.getPassword())) {
 			m.addAttribute("loged", user);
+		} else {
+			return "redirect:/login";
 		}
 
 		return "redirect:/main";
