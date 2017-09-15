@@ -3,7 +3,6 @@ package pl.cbl.entity;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,69 +16,80 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="post")
+@Table(name = "post")
 public class Post {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(length=300)
-	@NotEmpty
+	@Column(length = 300)
+	@NotBlank
 	private String title;
 	@ManyToOne
 	private User user;
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date created;
-	@OneToMany(mappedBy="post", orphanRemoval=true, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "post", orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Vote> votes;
 	private int sum = 0;
-	
-	
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public Date getCreated() {
 		return created;
 	}
+
 	public void setCreated(Date created) {
 		this.created = created;
 	}
+
 	public List<Vote> getVotes() {
 		return votes;
 	}
+
 	public void setVotes(List<Vote> votes) {
 		this.votes = votes;
 	}
+
 	public int getSum() {
 		return sum;
 	}
+
 	public void setSum(int sum) {
 		this.sum = sum;
 	}
+
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", title=" + title + ", created=" + created
-				+ ", sum=" + sum + "]";
+		return "Post [id=" + id + ", title=" + title + ", created=" + created + ", sum=" + sum + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -92,6 +102,7 @@ public class Post {
 		result = prime * result + ((votes == null) ? 0 : votes.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -127,12 +138,5 @@ public class Post {
 			return false;
 		return true;
 	}
-	
-	
 
-
-
-	
-
-	
 }

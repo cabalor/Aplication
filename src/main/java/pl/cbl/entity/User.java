@@ -17,44 +17,39 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
 
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(unique=true)
+	@Column(unique = true)
 	@NotEmpty
 	private String login;
 	@NotEmpty
-	@Length(min=6, max=80)
+	@Length(min = 6, max = 80)
 	private String password;
 	@Email
 	private String email;
 	@NotEmpty
-	@Length(min=3, max=20)
+	@Length(min = 3, max = 20)
 	private String firstName;
 	@NotEmpty
-	@Length(min=3, max=20)
+	@Length(min = 3, max = 20)
 	private String lastName;
-	@OneToMany(mappedBy="user", orphanRemoval=true, fetch=FetchType.EAGER)
-	private List<Post> posts; 
-	@OneToMany(mappedBy="user", orphanRemoval=true, fetch=FetchType.EAGER)
-	@Fetch(value=FetchMode.SUBSELECT)
+	@OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<Post> posts;
+	@OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Vote> votes;
-	
 
-	
 	public Boolean isPasswordCorrect(String password) {
 		return BCrypt.checkpw(password, this.password);
 	}
 
-
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;

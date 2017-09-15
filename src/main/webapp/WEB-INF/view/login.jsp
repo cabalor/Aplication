@@ -18,7 +18,7 @@
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="main">Main Site</a>
+			<a class="navbar-brand" href="main">Main</a>
 		</div>
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="main">Home</a></li>
@@ -34,15 +34,16 @@
 				<div class="form-group">
 					<div class="col-sm-5">
 						<form:label for="login" path="login">Login</form:label>
-						<form:input value= "kraken" class="form-control" id="login" path="login"
-							placeholder="enter your login here" />
+						<form:input value="kraken" class="form-control" id="login"
+							path="login" placeholder="enter your login here" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-5">
 						<form:label for="password" path="password">Password</form:label>
-						<form:input value="kraken" type="password" path="password" class="form-control"
-							id="password" placeholder="enter your password here" />
+						<form:input value="kraken" type="password" path="password"
+							class="form-control" id="password"
+							placeholder="enter your password here" />
 					</div>
 				</div>
 				<button type="submit" class="btn btn-default">Submit</button>

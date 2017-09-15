@@ -1,5 +1,6 @@
 package pl.cbl.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,31 +10,34 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.cbl.dao.UserDao;
+import pl.cbl.dao.PostDao;
+import pl.cbl.entity.Post;
 import pl.cbl.entity.User;
 
 @Controller
-public class RegisterController {
+public class AddController {
 
 	@Autowired
-	private UserDao dao;
+	private PostDao psDao;
 
-	@RequestMapping("/register")
+	@RequestMapping("/add")
 	public String register(Model m) {
-		User user = new User();
-		m.addAttribute("user", user);
-		return "register";
+		Post post = new Post();
+		m.addAttribute("post", post);
+		return "add";
 	}
 
-	@PostMapping("/register")
-	public String registerPost(@Valid User user, BindingResult result) {
+	@PostMapping("/add")
+	public String registerPost(@Valid Post post, HttpSession ses, BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "register";
+			return "loged";
 		}
+		User logggedUser = (User) ses.getAttribute("loged");
+		post.setUser(logggedUser);
+		psDao.addPost(post);
+		return "redirect:/loged";
 
-		dao.addUser(user);
-		return "redirect:/main";
 	}
 
 }
