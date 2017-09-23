@@ -30,7 +30,7 @@
 		<form:form modelAttribute="post" method="post">
 			<form:errors path="*" />
 			<div class="form-group">
-				<form:label for="comment" path="title">Napisz wiadomość</form:label>
+				<form:label for="comment" path="title">Napisz post</form:label>
 				<form:textarea id="comment" rows="5" path="title" />
 			</div>
 			<button type="submit" class="btn btn-default">dodaj</button>

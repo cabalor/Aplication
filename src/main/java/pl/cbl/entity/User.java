@@ -42,6 +42,10 @@ public class User {
 	@OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Vote> votes;
+	@OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<Message> messages;
+	
+	
 
 	public Boolean isPasswordCorrect(String password) {
 		return BCrypt.checkpw(password, this.password);
@@ -109,6 +113,14 @@ public class User {
 
 	public void setVotes(List<Vote> votes) {
 		this.votes = votes;
+	}
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 
 	@Override
