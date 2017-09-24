@@ -17,6 +17,7 @@ public class Message {
 	private Date created;
 	@ManyToOne
 	private User user;
+	private User reciver;
 
 	public long getId() {
 		return id;
@@ -33,7 +34,7 @@ public class Message {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 	public Message() {
 	}
 
@@ -45,10 +46,19 @@ public class Message {
 		this.user = user;
 	}
 
+	public User getReciver() {
+		return reciver;
+	}
+
+	public void setReciver(User reciver) {
+		this.reciver = reciver;
+	}
+
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", message=" + message + ", created=" + created + ", user=" + user + "]";
+		return "Message [id=" + id + ", message=" + message + ", created=" + created + ", user=" + user + ", reciver="
+				+ reciver + "]";
 	}
 	
-
+	
 }
