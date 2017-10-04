@@ -1,5 +1,7 @@
 package pl.cbl.security;
 
-public class SecuInit {
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+
+public class SecuInit extends AbstractSecurityWebApplicationInitializer{
 
 }

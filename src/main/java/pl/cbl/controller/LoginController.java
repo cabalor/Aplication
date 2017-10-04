@@ -19,9 +19,8 @@ public class LoginController {
 	UserRepository repoUser;
 
 	@RequestMapping("/login")
-	public String login(Model m) {
-		Login login = new Login();
-		m.addAttribute("loginUser", login);
+	public String login() {
+		
 
 		return "login";
 	}
